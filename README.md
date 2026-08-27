@@ -8,6 +8,11 @@
 ![JavaFX](https://img.shields.io/badge/JavaFX-21.0.4-blue?logo=java&logoColor=white)
 ![Maven](https://img.shields.io/badge/Build-Maven-C71A36?logo=apachemaven&logoColor=white)
 ![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?logo=windows&logoColor=white)
+[![Build Windows](https://github.com/zenoxart/MusicPlayer/actions/workflows/build-windows.yml/badge.svg)](https://github.com/zenoxart/MusicPlayer/actions/workflows/build-windows.yml)
+
+### [⬇️ Download the latest Windows build](https://github.com/zenoxart/MusicPlayer/releases/download/latest-windows-build/MusicPlayer-Windows.zip)
+
+*Automatically rebuilt from the latest `main` commit by [`build-windows.yml`](.github/workflows/build-windows.yml). Unzip and run `MusicPlayer.exe` — no Java install required.*
 
 </div>
 
@@ -163,4 +168,4 @@ isn't set). Clicking a star that already matches a track's current rating clears
 
 ## 📄 License
 
-No license has been chosen for this project yet.
+This project is licensed under the [MIT License](LICENSE).
