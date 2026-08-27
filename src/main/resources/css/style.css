@@ -1,0 +1,218 @@
+.root {
+    -fx-background-color: #121212;
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Top bar */
+.top-bar {
+    -fx-background-color: #000000;
+}
+
+.search-field {
+    -fx-background-color: #2a2a2a;
+    -fx-background-radius: 20;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #b3b3b3;
+    -fx-padding: 8 16 8 16;
+    -fx-font-size: 13px;
+}
+.search-field:focused {
+    -fx-background-color: #3a3a3a;
+}
+
+.folder-button {
+    -fx-background-color: transparent;
+    -fx-border-color: #535353;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 20 8 20;
+    -fx-cursor: hand;
+}
+.folder-button:hover {
+    -fx-border-color: white;
+}
+
+/* Sort combo */
+.sort-combo {
+    -fx-background-color: #2a2a2a;
+    -fx-background-radius: 20;
+    -fx-text-fill: white;
+    -fx-padding: 2 4 2 4;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+}
+.sort-combo .list-cell {
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+}
+.sort-combo .arrow {
+    -fx-background-color: #b3b3b3;
+}
+.sort-combo .list-view {
+    -fx-background-color: #2a2a2a;
+}
+.sort-combo .list-view .list-cell:hover {
+    -fx-background-color: #3a3a3a;
+    -fx-text-fill: white;
+}
+
+/* Card grid */
+.card-scroll-pane {
+    -fx-background-color: #121212;
+    -fx-background: #121212;
+}
+.card-scroll-pane .viewport {
+    -fx-background-color: #121212;
+}
+.card-grid {
+    -fx-background-color: #121212;
+}
+.grid-placeholder {
+    -fx-text-fill: #727272;
+    -fx-font-size: 13px;
+    -fx-padding: 40 0 0 0;
+}
+
+.song-card {
+    -fx-background-color: #181818;
+    -fx-background-radius: 8;
+    -fx-padding: 14;
+    -fx-cursor: hand;
+}
+.song-card:hover {
+    -fx-background-color: #282828;
+}
+.song-card-playing {
+    -fx-background-color: #282828;
+}
+.song-card-playing .card-title {
+    -fx-text-fill: #1DB954;
+}
+
+.song-cover {
+    -fx-background-color: linear-gradient(to bottom right, #3a3a3a, #1f1f1f);
+    -fx-background-radius: 8;
+}
+.cover-placeholder-icon {
+    -fx-text-fill: #5a5a5a;
+    -fx-font-size: 42px;
+}
+
+.card-title {
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+.card-artist {
+    -fx-text-fill: #b3b3b3;
+    -fx-font-size: 12px;
+}
+.card-duration {
+    -fx-text-fill: #727272;
+    -fx-font-size: 11px;
+}
+
+.star-rating {
+    -fx-padding: 2 0 0 0;
+}
+.star {
+    -fx-text-fill: #535353;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+.star-filled {
+    -fx-text-fill: #1DB954;
+}
+
+/* Now-playing swipe preview */
+.now-playing-preview {
+    -fx-cursor: hand;
+}
+.now-playing-cover {
+    -fx-background-color: linear-gradient(to bottom right, #3a3a3a, #1f1f1f);
+    -fx-background-radius: 6;
+}
+.now-playing-title {
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+.now-playing-artist {
+    -fx-text-fill: #b3b3b3;
+    -fx-font-size: 11px;
+}
+
+/* Player bar */
+.player-bar {
+    -fx-background-color: #181818;
+    -fx-border-color: #282828 transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+.time-label {
+    -fx-text-fill: #b3b3b3;
+    -fx-font-size: 11px;
+}
+
+.control-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #b3b3b3;
+    -fx-font-size: 18px;
+    -fx-cursor: hand;
+    -fx-padding: 4 10 4 10;
+}
+.control-button:hover {
+    -fx-text-fill: white;
+}
+
+.play-button {
+    -fx-background-color: white;
+    -fx-background-radius: 50%;
+    -fx-min-width: 34px;
+    -fx-min-height: 34px;
+    -fx-max-width: 34px;
+    -fx-max-height: 34px;
+    -fx-text-fill: #121212;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-padding: 0;
+}
+.play-button:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+.volume-icon {
+    -fx-text-fill: #b3b3b3;
+    -fx-font-size: 14px;
+}
+
+/* Filled sliders (progress + volume) */
+.progress-track-bg, .volume-track-bg {
+    -fx-background-color: #4d4d4d;
+    -fx-background-radius: 4;
+}
+.progress-track-fill, .volume-track-fill {
+    -fx-background-color: #1DB954;
+    -fx-background-radius: 4;
+}
+.overlay-slider {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+.overlay-slider .track {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+}
+.overlay-slider .thumb {
+    -fx-background-color: white;
+    -fx-background-radius: 50%;
+    -fx-pref-width: 12px;
+    -fx-pref-height: 12px;
+    -fx-opacity: 0;
+}
+.overlay-slider:hover .thumb {
+    -fx-opacity: 1;
+}
