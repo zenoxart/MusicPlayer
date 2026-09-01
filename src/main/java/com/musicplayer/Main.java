@@ -16,7 +16,7 @@ public class Main extends Application {
         scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
 
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/icon/app-icon.png")));
-        stage.setTitle("Meine Musik");
+        stage.setTitle("OMP - Open Music Player");
         stage.setScene(scene);
         stage.show();
     }

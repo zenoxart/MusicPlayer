@@ -1,130 +1,331 @@
+/* Theme tokens. Defined on every CSS-lookup "root" this app creates — the main
+   scene, each Dialog's DialogPane, and each ContextMenu — since none of those
+   are descendants of one another in the scene graph. -app-accent is always
+   re-set inline at runtime (see ThemeSupport); the value here is just the
+   fallback before that first happens. */
+.root, .app-dialog, .context-menu {
+    -app-bg: #121212;
+    -app-bg-strong: #000000;
+    -app-surface: #181818;
+    -app-surface-hover: #282828;
+    -app-surface-alt: #2a2a2a;
+    -app-surface-alt-hover: #3a3a3a;
+    -app-sidebar-hover: #1a1a1a;
+    -app-track-bg: #4d4d4d;
+    -app-text-primary: white;
+    -app-text-secondary: #b3b3b3;
+    -app-text-muted: #727272;
+    -app-text-faint: #535353;
+    -app-border: #535353;
+    -app-accent: #1DB954;
+}
+.root.light-theme, .app-dialog.light-theme, .context-menu.light-theme {
+    -app-bg: #f7f7f7;
+    -app-bg-strong: #ffffff;
+    -app-surface: #ffffff;
+    -app-surface-hover: #ececec;
+    -app-surface-alt: #eeeeee;
+    -app-surface-alt-hover: #e0e0e0;
+    -app-sidebar-hover: #ececec;
+    -app-track-bg: #d5d5d5;
+    -app-text-primary: #121212;
+    -app-text-secondary: #5a5a5a;
+    -app-text-muted: #8a8a8a;
+    -app-text-faint: #a0a0a0;
+    -app-border: #d0d0d0;
+}
+
 .root {
-    -fx-background-color: #121212;
+    -fx-background-color: -app-bg;
     -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
 
 /* Top bar */
 .top-bar {
-    -fx-background-color: #000000;
+    -fx-background-color: -app-bg-strong;
 }
 
 .search-field {
-    -fx-background-color: #2a2a2a;
+    -fx-background-color: -app-surface-alt;
     -fx-background-radius: 20;
-    -fx-text-fill: white;
-    -fx-prompt-text-fill: #b3b3b3;
+    -fx-text-fill: -app-text-primary;
+    -fx-prompt-text-fill: -app-text-secondary;
     -fx-padding: 8 16 8 16;
     -fx-font-size: 13px;
 }
 .search-field:focused {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: -app-surface-alt-hover;
 }
 
 .folder-button {
     -fx-background-color: transparent;
-    -fx-border-color: #535353;
+    -fx-border-color: -app-border;
     -fx-border-radius: 20;
     -fx-background-radius: 20;
-    -fx-text-fill: white;
+    -fx-text-fill: -app-text-primary;
     -fx-font-size: 13px;
     -fx-font-weight: bold;
     -fx-padding: 8 20 8 20;
     -fx-cursor: hand;
 }
 .folder-button:hover {
-    -fx-border-color: white;
+    -fx-border-color: -app-text-primary;
 }
 
-/* Sort combo */
-.sort-combo {
-    -fx-background-color: #2a2a2a;
+.settings-button {
+    -fx-background-color: transparent;
+    -fx-border-color: -app-border;
+    -fx-border-radius: 20;
     -fx-background-radius: 20;
-    -fx-text-fill: white;
-    -fx-padding: 2 4 2 4;
-    -fx-font-size: 12px;
+    -fx-text-fill: -app-text-primary;
+    -fx-font-size: 15px;
+    -fx-min-width: 34px;
+    -fx-min-height: 34px;
+    -fx-max-width: 34px;
+    -fx-max-height: 34px;
     -fx-cursor: hand;
 }
-.sort-combo .list-cell {
-    -fx-text-fill: white;
+.settings-button:hover {
+    -fx-border-color: -app-text-primary;
+}
+
+/* Filter & sort trigger button (top bar) — icon-only, matches .settings-button's shape */
+.filter-button {
     -fx-background-color: transparent;
+    -fx-border-color: -app-border;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-text-fill: -app-text-primary;
+    -fx-font-size: 15px;
+    -fx-min-width: 34px;
+    -fx-min-height: 34px;
+    -fx-max-width: 34px;
+    -fx-max-height: 34px;
+    -fx-cursor: hand;
 }
-.sort-combo .arrow {
-    -fx-background-color: #b3b3b3;
+.filter-button:hover {
+    -fx-border-color: -app-text-primary;
 }
-.sort-combo .list-view {
-    -fx-background-color: #2a2a2a;
+.filter-button-active {
+    -fx-background-color: -app-accent;
+    -fx-border-color: -app-accent;
+    -fx-text-fill: #121212;
+    -fx-font-weight: bold;
 }
-.sort-combo .list-view .list-cell:hover {
-    -fx-background-color: #3a3a3a;
-    -fx-text-fill: white;
+
+/* Sidebar */
+.sidebar {
+    -fx-background-color: -app-bg-strong;
+    -fx-padding: 16 0 16 0;
+    -fx-spacing: 2;
+}
+.sidebar-row {
+    -fx-text-fill: -app-text-secondary;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20 10 20;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 0 0 3;
+}
+.sidebar-row:hover {
+    -fx-text-fill: -app-text-primary;
+    -fx-background-color: -app-sidebar-hover;
+}
+.sidebar-row-active {
+    -fx-text-fill: -app-text-primary;
+    -fx-background-color: -app-sidebar-hover;
+    -fx-border-color: -app-accent;
+}
+.sidebar-section-label {
+    -fx-text-fill: -app-text-muted;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 18 20 6 20;
+}
+.sidebar-new-playlist {
+    -fx-text-fill: -app-text-muted;
+    -fx-font-weight: normal;
+}
+.sidebar-new-playlist:hover {
+    -fx-text-fill: -app-text-primary;
+}
+.sidebar-row-drop-target {
+    -fx-background-color: -app-surface-hover;
+    -fx-border-color: -app-accent;
+}
+.sidebar-row-text {
+    -fx-text-fill: -app-text-secondary;
+}
+.sidebar-row:hover .sidebar-row-text,
+.sidebar-row-active .sidebar-row-text {
+    -fx-text-fill: -app-text-primary;
+}
+.sidebar-menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -app-text-muted;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 50%;
+    -fx-min-width: 26px;
+    -fx-min-height: 26px;
+    -fx-max-width: 26px;
+    -fx-max-height: 26px;
+    -fx-padding: 0 0 3 0;
+    -fx-cursor: hand;
+    -fx-opacity: 0;
+}
+.sidebar-row:hover .sidebar-menu-button {
+    -fx-opacity: 1;
+}
+.sidebar-menu-button:hover {
+    -fx-background-color: -app-surface-alt-hover;
+    -fx-text-fill: -app-text-primary;
 }
 
 /* Card grid */
 .card-scroll-pane {
-    -fx-background-color: #121212;
-    -fx-background: #121212;
+    -fx-background-color: -app-bg;
+    -fx-background: -app-bg;
 }
 .card-scroll-pane .viewport {
-    -fx-background-color: #121212;
+    -fx-background-color: -app-bg;
 }
 .card-grid {
-    -fx-background-color: #121212;
+    -fx-background-color: -app-bg;
 }
 .grid-placeholder {
-    -fx-text-fill: #727272;
+    -fx-text-fill: -app-text-muted;
     -fx-font-size: 13px;
-    -fx-padding: 40 0 0 0;
+}
+.empty-state-icon {
+    -fx-text-fill: -app-surface-alt-hover;
+    -fx-font-size: 48px;
+}
+.empty-state-cta {
+    -fx-margin: 8 0 0 0;
+}
+
+.carousel-arrow {
+    -fx-background-color: -app-surface-alt;
+    -fx-background-radius: 50%;
+    -fx-text-fill: -app-text-primary;
+    -fx-font-size: 16px;
+    -fx-min-width: 44px;
+    -fx-min-height: 44px;
+    -fx-max-width: 44px;
+    -fx-max-height: 44px;
+    -fx-cursor: hand;
+}
+.carousel-arrow:hover {
+    -fx-background-color: -app-surface-alt-hover;
+}
+.carousel-arrow:disabled {
+    -fx-opacity: 0.25;
+}
+.carousel-card-side {
+    -fx-opacity: 0.55;
+}
+.carousel-card-focused {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.45), 20, 0.15, 0, 6);
 }
 
 .song-card {
-    -fx-background-color: #181818;
+    -fx-background-color: -app-surface;
     -fx-background-radius: 8;
     -fx-padding: 14;
     -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 0 0 3;
 }
 .song-card:hover {
-    -fx-background-color: #282828;
+    -fx-background-color: -app-surface-hover;
 }
 .song-card-playing {
-    -fx-background-color: #282828;
+    -fx-background-color: -app-surface-hover;
+    -fx-border-color: -app-accent;
 }
 .song-card-playing .card-title {
-    -fx-text-fill: #1DB954;
+    -fx-text-fill: -app-accent;
+}
+.now-playing-badge {
+    -fx-text-fill: white;
+    -fx-background-color: -app-accent;
+    -fx-background-radius: 50%;
+    -fx-min-width: 26px;
+    -fx-min-height: 26px;
+    -fx-max-width: 26px;
+    -fx-max-height: 26px;
+    -fx-alignment: center;
+    -fx-font-size: 11px;
+    -fx-translate-x: -8;
+    -fx-translate-y: -8;
+}
+.song-card-dragging {
+    -fx-opacity: 0.5;
+}
+.song-card-drop-target {
+    -fx-border-color: -app-accent;
+    -fx-background-color: -app-surface-hover;
 }
 
 .song-cover {
-    -fx-background-color: linear-gradient(to bottom right, #3a3a3a, #1f1f1f);
+    -fx-background-color: linear-gradient(to bottom right, -app-surface-alt-hover, -app-surface);
     -fx-background-radius: 8;
 }
 .cover-placeholder-icon {
-    -fx-text-fill: #5a5a5a;
-    -fx-font-size: 42px;
+    -fx-text-fill: -app-text-faint;
+    -fx-font-size: 60px;
+}
+
+.card-menu-button {
+    -fx-background-color: rgba(0, 0, 0, 0.55);
+    -fx-text-fill: white;
+    -fx-background-radius: 50%;
+    -fx-min-width: 28px;
+    -fx-min-height: 28px;
+    -fx-max-width: 28px;
+    -fx-max-height: 28px;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-padding: 0 0 3 0;
+    -fx-translate-x: -8;
+    -fx-translate-y: 8;
+    -fx-opacity: 0;
+}
+.song-card:hover .card-menu-button {
+    -fx-opacity: 1;
+}
+.card-menu-button:hover {
+    -fx-background-color: -app-accent;
+    -fx-text-fill: #121212;
 }
 
 .card-title {
-    -fx-text-fill: white;
-    -fx-font-size: 13px;
+    -fx-text-fill: -app-text-primary;
+    -fx-font-size: 16px;
     -fx-font-weight: bold;
 }
 .card-artist {
-    -fx-text-fill: #b3b3b3;
-    -fx-font-size: 12px;
+    -fx-text-fill: -app-text-secondary;
+    -fx-font-size: 14px;
 }
 .card-duration {
-    -fx-text-fill: #727272;
-    -fx-font-size: 11px;
+    -fx-text-fill: -app-text-muted;
+    -fx-font-size: 12px;
 }
 
 .star-rating {
-    -fx-padding: 2 0 0 0;
+    -fx-padding: 4 0 0 0;
 }
 .star {
-    -fx-text-fill: #535353;
-    -fx-font-size: 13px;
+    -fx-text-fill: -app-text-faint;
+    -fx-font-size: 16px;
     -fx-cursor: hand;
 }
 .star-filled {
-    -fx-text-fill: #1DB954;
+    -fx-text-fill: -app-accent;
 }
 
 /* Now-playing swipe preview */
@@ -132,70 +333,73 @@
     -fx-cursor: hand;
 }
 .now-playing-cover {
-    -fx-background-color: linear-gradient(to bottom right, #3a3a3a, #1f1f1f);
+    -fx-background-color: linear-gradient(to bottom right, -app-surface-alt-hover, -app-surface);
     -fx-background-radius: 6;
 }
 .now-playing-title {
-    -fx-text-fill: white;
+    -fx-text-fill: -app-text-primary;
     -fx-font-size: 13px;
     -fx-font-weight: bold;
 }
 .now-playing-artist {
-    -fx-text-fill: #b3b3b3;
+    -fx-text-fill: -app-text-secondary;
     -fx-font-size: 11px;
 }
 
 /* Player bar */
 .player-bar {
-    -fx-background-color: #181818;
-    -fx-border-color: #282828 transparent transparent transparent;
+    -fx-background-color: -app-surface;
+    -fx-border-color: -app-surface-hover transparent transparent transparent;
     -fx-border-width: 1 0 0 0;
 }
 
 .time-label {
-    -fx-text-fill: #b3b3b3;
+    -fx-text-fill: -app-text-secondary;
     -fx-font-size: 11px;
 }
 
 .control-button {
     -fx-background-color: transparent;
-    -fx-text-fill: #b3b3b3;
+    -fx-text-fill: -app-text-secondary;
     -fx-font-size: 18px;
     -fx-cursor: hand;
     -fx-padding: 4 10 4 10;
 }
 .control-button:hover {
-    -fx-text-fill: white;
+    -fx-text-fill: -app-text-primary;
+}
+.control-button-active {
+    -fx-text-fill: -app-accent;
 }
 
 .play-button {
-    -fx-background-color: white;
+    -fx-background-color: -app-text-primary;
     -fx-background-radius: 50%;
     -fx-min-width: 34px;
     -fx-min-height: 34px;
     -fx-max-width: 34px;
     -fx-max-height: 34px;
-    -fx-text-fill: #121212;
+    -fx-text-fill: -app-bg;
     -fx-font-size: 14px;
     -fx-cursor: hand;
     -fx-padding: 0;
 }
 .play-button:hover {
-    -fx-background-color: #f0f0f0;
+    -fx-opacity: 0.85;
 }
 
 .volume-icon {
-    -fx-text-fill: #b3b3b3;
+    -fx-text-fill: -app-text-secondary;
     -fx-font-size: 14px;
 }
 
 /* Filled sliders (progress + volume) */
 .progress-track-bg, .volume-track-bg {
-    -fx-background-color: #4d4d4d;
+    -fx-background-color: -app-track-bg;
     -fx-background-radius: 4;
 }
 .progress-track-fill, .volume-track-fill {
-    -fx-background-color: #1DB954;
+    -fx-background-color: -app-accent;
     -fx-background-radius: 4;
 }
 .overlay-slider {
@@ -207,7 +411,7 @@
     -fx-background-insets: 0;
 }
 .overlay-slider .thumb {
-    -fx-background-color: white;
+    -fx-background-color: -app-text-primary;
     -fx-background-radius: 50%;
     -fx-pref-width: 12px;
     -fx-pref-height: 12px;
@@ -215,4 +419,265 @@
 }
 .overlay-slider:hover .thumb {
     -fx-opacity: 1;
+}
+
+/* Dialogs (Settings, New Playlist, confirmations) — Dialog builds its own
+   Scene and does not inherit the app's stylesheet automatically, so these
+   overrides are required, not cosmetic. */
+.app-dialog {
+    -fx-background-color: -app-surface;
+}
+.app-dialog > *.header-panel {
+    -fx-background-color: -app-surface;
+}
+.app-dialog .header-panel .label {
+    -fx-text-fill: -app-text-primary;
+    -fx-font-weight: bold;
+}
+.app-dialog .label {
+    -fx-text-fill: -app-text-primary;
+}
+.app-dialog .content.label {
+    -fx-text-fill: -app-text-primary;
+}
+.app-dialog .dialog-heading {
+    -fx-text-fill: -app-text-primary;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-padding: 0 0 4 0;
+}
+.app-dialog .dialog-hint {
+    -fx-text-fill: -app-text-muted;
+    -fx-font-size: 11px;
+}
+.app-dialog .settings-checkbox {
+    -fx-text-fill: -app-text-primary;
+}
+.app-dialog .settings-checkbox .box {
+    -fx-background-color: -app-surface-alt;
+    -fx-border-color: -app-border;
+}
+.app-dialog .settings-checkbox:selected .box {
+    -fx-background-color: -app-accent;
+    -fx-border-color: -app-accent;
+}
+.app-dialog .text-field {
+    -fx-background-color: -app-surface-alt;
+    -fx-text-fill: -app-text-primary;
+    -fx-background-radius: 4;
+}
+.app-dialog .button-bar {
+    -fx-padding: 16 0 0 0;
+}
+.app-dialog .button-bar .button {
+    -fx-background-color: -app-surface-alt;
+    -fx-text-fill: -app-text-primary;
+    -fx-background-radius: 20;
+    -fx-padding: 8 22 8 22;
+    -fx-cursor: hand;
+}
+.app-dialog .button-bar .button:hover {
+    -fx-background-color: -app-surface-alt-hover;
+}
+.app-dialog .button-bar .button:default {
+    -fx-background-color: -app-accent;
+    -fx-text-fill: #121212;
+    -fx-font-weight: bold;
+}
+.app-dialog .button-bar .button:disabled {
+    -fx-opacity: 0.4;
+}
+.app-dialog .sort-criterion-label {
+    -fx-text-fill: -app-text-primary;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+.app-dialog .sort-cell-row {
+    -fx-background-color: -app-surface-alt;
+    -fx-background-radius: 12;
+    -fx-border-color: -app-border;
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+}
+.app-dialog .sort-cell {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-text-fill: -app-text-secondary;
+    -fx-font-size: 15px;
+    -fx-min-width: 44px;
+    -fx-min-height: 40px;
+    -fx-padding: 0;
+    -fx-cursor: hand;
+}
+.app-dialog .sort-cell-left {
+    -fx-background-radius: 11 0 0 11;
+}
+.app-dialog .sort-cell-right {
+    -fx-background-radius: 0 11 11 0;
+    -fx-border-color: transparent transparent transparent -app-border;
+    -fx-border-width: 0 0 0 1;
+}
+.app-dialog .sort-cell:hover {
+    -fx-background-color: -app-surface-alt-hover;
+    -fx-text-fill: -app-text-primary;
+}
+.app-dialog .sort-cell-active {
+    -fx-background-color: -app-accent;
+    -fx-text-fill: #121212;
+}
+
+/* Theme picker (first launch + Settings → "Design ändern") */
+.app-dialog .theme-mode-row {
+    -fx-background-color: -app-surface-alt;
+    -fx-background-radius: 12;
+    -fx-border-color: -app-border;
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+}
+.app-dialog .theme-mode-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -app-text-secondary;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 22 10 22;
+    -fx-cursor: hand;
+}
+.app-dialog .theme-mode-cell-left {
+    -fx-background-radius: 11 0 0 11;
+}
+.app-dialog .theme-mode-cell-right {
+    -fx-background-radius: 0 11 11 0;
+    -fx-border-color: transparent transparent transparent -app-border;
+    -fx-border-width: 0 0 0 1;
+}
+.app-dialog .theme-mode-cell:hover {
+    -fx-background-color: -app-surface-alt-hover;
+    -fx-text-fill: -app-text-primary;
+}
+.app-dialog .theme-mode-cell-active {
+    -fx-background-color: -app-accent;
+    -fx-text-fill: #121212;
+}
+.theme-accent-swatch {
+    -fx-background-radius: 50%;
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-max-width: 30px;
+    -fx-max-height: 30px;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-border-width: 2;
+    -fx-border-radius: 50%;
+}
+.theme-accent-swatch:hover {
+    -fx-border-color: -app-text-secondary;
+}
+.theme-accent-swatch-active {
+    -fx-border-color: -app-text-primary;
+}
+.app-dialog .theme-custom-picker {
+    -fx-background-color: -app-surface-alt;
+    -fx-background-radius: 8;
+    -fx-mark-color: -app-text-primary;
+}
+.app-dialog .theme-custom-picker .arrow-button {
+    -fx-background-color: transparent;
+}
+
+/* Delete-playlist dialog. Red is a fixed warning color, independent of theme/accent. */
+.delete-warning-badge {
+    -fx-background-color: rgba(224, 70, 70, 0.14);
+    -fx-background-radius: 18;
+    -fx-min-width: 64px;
+    -fx-min-height: 64px;
+    -fx-max-width: 64px;
+    -fx-max-height: 64px;
+}
+.app-dialog .delete-warning-icon {
+    -fx-text-fill: #e04646;
+    -fx-font-size: 28px;
+}
+.app-dialog .delete-headline {
+    -fx-text-fill: -app-text-primary;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+}
+.app-dialog .delete-description {
+    -fx-text-fill: -app-text-secondary;
+    -fx-font-size: 12px;
+}
+.delete-risk-box {
+    -fx-background-color: rgba(224, 70, 70, 0.08);
+    -fx-background-radius: 10;
+    -fx-border-color: rgba(224, 70, 70, 0.35);
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-padding: 14 16 14 16;
+}
+.app-dialog .delete-risk-label {
+    -fx-text-fill: #e04646;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+.app-dialog .delete-risk-item {
+    -fx-text-fill: -app-text-secondary;
+    -fx-font-size: 12px;
+}
+.app-dialog .delete-risk-total {
+    -fx-text-fill: #e04646;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 4 0 0 0;
+}
+.app-dialog .delete-protect-button {
+    -fx-background-color: -app-accent;
+    -fx-text-fill: #121212;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-background-radius: 24;
+    -fx-padding: 12 24 12 24;
+    -fx-cursor: hand;
+}
+.app-dialog .delete-protect-button:hover {
+    -fx-opacity: 0.88;
+}
+.app-dialog .delete-risk-it-link {
+    -fx-text-fill: -app-text-muted;
+    -fx-font-size: 12px;
+    -fx-underline: false;
+    -fx-cursor: hand;
+}
+.app-dialog .delete-risk-it-link:hover {
+    -fx-text-fill: #e04646;
+    -fx-underline: true;
+}
+
+/* Context menus (song-card "add to playlist", sidebar "delete playlist") */
+.context-menu {
+    -fx-background-color: -app-surface-hover;
+    -fx-padding: 4;
+}
+.context-menu .menu-item .label {
+    -fx-text-fill: -app-text-primary;
+}
+.context-menu .menu-item:focused,
+.context-menu .menu-item:hovered {
+    -fx-background-color: -app-surface-alt-hover;
+}
+.context-menu .menu-item:focused .label,
+.context-menu .menu-item:hovered .label {
+    -fx-text-fill: -app-text-primary;
+}
+.context-menu .menu-item:disabled .label {
+    -fx-text-fill: -app-text-faint;
+}
+
+/* Toast notification */
+.toast {
+    -fx-background-color: -app-surface-hover;
+    -fx-text-fill: -app-text-primary;
+    -fx-background-radius: 20;
+    -fx-padding: 10 20 10 20;
+    -fx-font-size: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 12, 0.2, 0, 2);
 }

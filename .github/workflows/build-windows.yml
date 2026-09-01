@@ -1,0 +1,59 @@
+name: Build Windows
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Build shaded jar
+        run: mvn -B clean package
+
+      - name: Package with jpackage
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path packaging/app-input | Out-Null
+          Copy-Item target/music-player-1.0-SNAPSHOT-app.jar packaging/app-input/music-player-app.jar
+
+          jpackage `
+            --type app-image `
+            --input packaging/app-input `
+            --main-jar music-player-app.jar `
+            --main-class com.musicplayer.Launcher `
+            --name "OMP" `
+            --app-version 1.0.0 `
+            --vendor "ZenoxArt" `
+            --icon packaging/app-icon.ico `
+            --dest packaging/dist
+
+      - name: Zip app image
+        shell: pwsh
+        run: Compress-Archive -Path packaging/dist/OMP -DestinationPath OMP-Windows.zip
+
+      - name: Publish build to rolling release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete latest-windows-build --yes --cleanup-tag 2>$null
+          gh release create latest-windows-build OMP-Windows.zip `
+            --title "Latest Windows Build" `
+            --notes "Automated Windows build from commit $env:GITHUB_SHA" `
+            --target $env:GITHUB_SHA

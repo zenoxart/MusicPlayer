@@ -16,21 +16,8 @@ public class RatingStore {
     private final Map<String, Integer> ratings = new HashMap<>();
 
     public RatingStore() {
-        Path dir = resolveAppDataDir();
-        try {
-            Files.createDirectories(dir);
-        } catch (IOException ignored) {
-        }
-        this.storeFile = dir.resolve("ratings.json");
+        this.storeFile = AppDataLocations.resolve("ratings.json");
         load();
-    }
-
-    private Path resolveAppDataDir() {
-        String appData = System.getenv("APPDATA");
-        Path base = (appData != null && !appData.isBlank())
-                ? Path.of(appData)
-                : Path.of(System.getProperty("user.home"));
-        return base.resolve("MusicPlayer");
     }
 
     private void load() {
